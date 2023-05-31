@@ -41,9 +41,9 @@ open class ObjectRegistrar<T>(private val registry: Registry<T>) : Registrar, It
         return created
     }
 
-    fun <U> registerAndThen(path: String, obj: () -> U, then: (U) -> Unit): Lazy<U> where U : T = this.register(path) {
+    fun <U> registerAndThen(path: String, obj: () -> U, then: (Pair<String, U>) -> Unit): Lazy<U> where U : T = this.register(path) {
         val created = obj()
-        then(created)
+        then(Pair(path, created))
         created
     }
 
@@ -62,10 +62,10 @@ abstract class ItemRegistrar : ObjectRegistrar<Item>(Registries.ITEM) {
     abstract fun createDefaultSettings(): Item.Settings
 }
 
-open class BlockRegistrar(private val items: ItemRegistrar?) : ObjectRegistrar<Block>(Registries.BLOCK) {
+open class BlockRegistrar(protected val items: ItemRegistrar?) : ObjectRegistrar<Block>(Registries.BLOCK) {
     fun <U> registerWithItem(id: String, block: () -> U): Lazy<U> where U : Block = this.registerAndThen(id, block) {
         this.items?.register(id) {
-            BlockItem(it, this.items.createDefaultSettings())
+            BlockItem(it.second, this.items.createDefaultSettings())
         }
     }
 }
