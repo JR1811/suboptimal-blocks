@@ -1,4 +1,4 @@
-package net.shirojr.suboptiomal.blocks.register
+package net.shirojr.suboptimal.blocks.register
 
 import net.minecraft.block.Block
 import net.minecraft.item.BlockItem
@@ -13,6 +13,10 @@ interface Registrar {
 }
 
 class RegistrarPipeline(private val modId: String, init: RegistrarPipeline.() -> Unit) {
+
+    // Unit ~= void in java...
+    private val registrars = mutableListOf<Registrar>()
+
     init {
         // primary ctor extension?
         init(this)
@@ -27,9 +31,6 @@ class RegistrarPipeline(private val modId: String, init: RegistrarPipeline.() ->
             entry.register(this.modId)
         }
     }
-
-    // Unit ~= void in java...
-    private val registrars = mutableListOf<Registrar>()
 }
 
 open class ObjectRegistrar<T>(private val registry: Registry<T>) : Registrar, Iterable<Pair<String, T>> {

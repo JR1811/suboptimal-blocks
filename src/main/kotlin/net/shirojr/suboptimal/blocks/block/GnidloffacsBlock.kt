@@ -1,4 +1,4 @@
-package net.shirojr.suboptiomal.blocks.block
+package net.shirojr.suboptimal.blocks.block
 
 import net.minecraft.block.Block
 

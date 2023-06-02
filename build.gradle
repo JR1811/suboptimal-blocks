@@ -23,7 +23,7 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        "suboptiomal-blocks" {
+        "suboptimal-blocks" {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
@@ -35,7 +35,7 @@ loom {
             name "Data Generation"
             vmArg "-Dfabric-api.datagen"
             vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-            vmArg "-Dfabric-api.datagen.modid=suboptiomal-blocks"
+            vmArg "-Dfabric-api.datagen.modid=suboptimal-blocks"
  
             runDir "build/datagen"
         }

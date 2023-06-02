@@ -1,4 +1,4 @@
-package net.shirojr.suboptiomal.blocks
+package net.shirojr.suboptimal.blocks
 
 import net.fabricmc.api.ClientModInitializer
 

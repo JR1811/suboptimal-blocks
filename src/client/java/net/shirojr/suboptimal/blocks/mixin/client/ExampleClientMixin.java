@@ -1,4 +1,4 @@
-package net.shirojr.suboptiomal.blocks.mixin.client;
+package net.shirojr.suboptimal.blocks.mixin.client;
 
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
